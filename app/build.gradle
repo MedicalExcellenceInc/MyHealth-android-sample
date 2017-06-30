@@ -1,0 +1,31 @@
+apply plugin: 'com.android.application'
+
+android {
+	compileSdkVersion 25
+	buildToolsVersion "24.0.3"
+	defaultConfig {
+		applicationId "kr.co.mediex.myhealth.sample"
+		minSdkVersion 16
+		targetSdkVersion 25
+		versionCode 1
+		versionName "1.0"
+		multiDexEnabled true
+	}
+	lintOptions {
+		abortOnError false
+	}
+}
+
+dependencies {
+	compile(name: 'myhealth-0.0.2', ext: 'aar')
+	compile 'com.android.support:appcompat-v7:25.3.1'
+	compile 'com.android.support:design:25.3.1'
+}
+
+
+repositories {
+	mavenCentral()
+	flatDir {
+		dirs 'libs'
+	}
+}

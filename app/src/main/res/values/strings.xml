@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MyHealth 샘플</string>
+    <string name="activity_regist_label">가입</string>
+    <string name="activity_login_label">로그인</string>
+    <string name="activity_data_send_label">데이터 전송</string>
+    <string name="email">이메일</string>
+    <string name="name">이름</string>
+    <string name="password">비밀번호</string>
+    <string name="passwordConfirm">비밀번호 확인</string>
+    <string name="regist">가입</string>
+    <string name="login">로그인</string>
+    <string name="send">전송</string>
+    <string name="weight">뭄무게</string>
+    <string name="height">신장</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>
