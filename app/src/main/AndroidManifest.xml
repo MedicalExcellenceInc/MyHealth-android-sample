@@ -11,12 +11,15 @@
             android:supportsRtl="true"
             android:theme="@style/appTheme">
         <activity
-                android:name=".views.DataSendActivity"
-                android:label="@string/activity_data_send_label">
+                android:name=".views.SampleSaveDataActivity"
+                android:label="@string/saveData">
         </activity>
         <activity
-                android:name=".views.MainActivity"
-                android:label="@string/title_activity_main"
+                android:name=".views.SampleLoginActivity"
+                android:label="@string/login">
+        </activity>
+        <activity
+                android:name=".views.SplashActivity"
                 android:theme="@style/appTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
