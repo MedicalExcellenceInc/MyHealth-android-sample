@@ -233,3 +233,12 @@ mMyHealthService.saveData(myBodyInfo, new Success<Object>() {
 ```java
 mMyHealthService.logout();
 ```
+
+### 3. 샘플 스크린샷
+
+#### 3.1. Splash
+![](doc/screenshot_login.png)
+#### 3.1. Login
+![](doc/screenshot_login2.png)
+#### 3.1. Splash
+![](doc/screenshot_main.png)
