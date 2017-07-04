@@ -243,6 +243,6 @@ mMyHealthService.logout();
 #### 3.1. Splash
 ![](/assets/img/screenshot_login.png)
 #### 3.1. Login
-![](docs/assets/img/screenshot_login2.png)
+![](/assets/img/screenshot_login2.png)
 #### 3.1. Splash
 ![](/assets/img/screenshot_main.png)
