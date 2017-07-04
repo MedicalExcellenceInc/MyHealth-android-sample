@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 MyHealth Android Library 연동
 ---
 
