@@ -241,8 +241,8 @@ mMyHealthService.logout();
 ### 3. 샘플 스크린샷
 
 #### 3.1. Splash
-![](/assets/img/screenshot_login.png)
+![](assets/img/screenshot_login.png)
 #### 3.1. Login
-![](/assets/img/screenshot_login2.png)
+![](assets/img/screenshot_login2.png)
 #### 3.1. Splash
-![](/assets/img/screenshot_main.png)
+![](assets/img/screenshot_main.png)
