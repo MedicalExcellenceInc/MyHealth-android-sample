@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import kr.co.mediex.myhealth.sample.R;
 import kr.co.mediex.myhealth.sample.SampleApplication;
-import kr.co.mediex.myhealth.view.LoginActivity;
-import kr.co.mediex.myhealth.view.MyHealthActivity;
+import kr.co.mediex.myhealth.v1.view.LoginActivity;
+import kr.co.mediex.myhealth.v1.view.MyHealthActivity;
 
 // 샘플 로그인 화면
 public class SampleLoginActivity extends AppCompatActivity {

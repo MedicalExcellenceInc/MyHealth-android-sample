@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
-import kr.co.mediex.myhealth.ContextMyHealthService;
+import kr.co.mediex.myhealth.v1.ContextMyHealthService;
 import kr.co.mediex.myhealth.sample.SampleApplication;
 
 /**

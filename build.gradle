@@ -17,15 +17,11 @@ android {
 }
 
 dependencies {
-	compile(name: 'myhealth-0.0.1', ext: 'aar')
+	compile project(path: ':library')
 	compile 'com.android.support:appcompat-v7:25.3.1'
 	compile 'com.android.support:design:25.3.1'
+
 }
-
-
 repositories {
 	mavenCentral()
-	flatDir {
-		dirs 'libs'
-	}
 }
