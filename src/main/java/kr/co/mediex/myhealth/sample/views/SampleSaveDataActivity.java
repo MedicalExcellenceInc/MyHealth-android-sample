@@ -2,17 +2,17 @@ package kr.co.mediex.myhealth.sample.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import kr.co.mediex.myhealth.ContextMyHealthService;
-import kr.co.mediex.myhealth.domain.User;
-import kr.co.mediex.myhealth.function.Success;
-import kr.co.mediex.myhealth.function.Error;
+import kr.co.mediex.myhealth.v1.MyHealth;
+import kr.co.mediex.myhealth.v1.adapter.ContextOAuthTokenAdapter;
+import kr.co.mediex.myhealth.v1.domain.User;
+import kr.co.mediex.myhealth.v1.function.Error;
+import kr.co.mediex.myhealth.v1.function.Success;
 import kr.co.mediex.myhealth.sample.R;
 import kr.co.mediex.myhealth.sample.SampleApplication;
 import kr.co.mediex.myhealth.sample.models.MyBodyInfo;
@@ -40,16 +40,16 @@ public class SampleSaveDataActivity extends AppCompatActivity implements View.On
     private Button mLogoutButton = null;
 
     // API를 사용할 수 있는 라이브러리
-    private ContextMyHealthService mMyHealthService= null;
+    private MyHealth mMyHealthService = null;
 
     // 클릭이벤트 통합처리
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.saveButton :
+            case R.id.saveButton:
                 this.saveData();
                 break;
-            case R.id.logoutButton :
+            case R.id.logoutButton:
                 this.logout();
                 break;
         }
@@ -60,10 +60,11 @@ public class SampleSaveDataActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_save);
 
-        this.mMyHealthService = new ContextMyHealthService(getApplicationContext(),
+        this.mMyHealthService = new MyHealth(
                 SampleApplication.MY_SERVICE_NAME,
                 SampleApplication.MY_SERVICE_SECRET,
-                SampleApplication.MY_RESOURCE_NAME);
+                SampleApplication.MY_RESOURCE_NAME,
+                new ContextOAuthTokenAdapter(getApplicationContext()));
         this.updateView();
         this.updateUserInfo();
     }
@@ -85,7 +86,7 @@ public class SampleSaveDataActivity extends AppCompatActivity implements View.On
 
     private void updateUserInfo() {
         // 유저 정보를 가져옴.
-        this.mMyHealthService.getUser(new Success<User>() {
+        this.mMyHealthService.getCurrentUser(new Success<User>() {
             // 유저 정보를 서버에서 가져오기 성공
             @Override
             public void onSuccess(final User user) {
@@ -137,7 +138,7 @@ public class SampleSaveDataActivity extends AppCompatActivity implements View.On
             myBodyInfo.setHeight(height);
             myBodyInfo.setMyUser(myUser);
 
-            mMyHealthService.saveData(myBodyInfo, new Success<Object>() {
+            mMyHealthService.saveRecord(myBodyInfo, new Success<Object>() {
                 // 샘플 정보를 서버에서 저장하기 정공
                 @Override
                 public void onSuccess(Object o) {
@@ -166,7 +167,7 @@ public class SampleSaveDataActivity extends AppCompatActivity implements View.On
     private void logout() {
         mMyHealthService.logout();
         Intent splashActivityIntent = new Intent(getApplicationContext(), SplashActivity.class);
-        splashActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+        splashActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(splashActivityIntent);
     }
 }

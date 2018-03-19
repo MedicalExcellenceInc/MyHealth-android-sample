@@ -10,6 +10,7 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/appTheme">
+
         <activity
                 android:name=".views.SampleSaveDataActivity"
                 android:label="@string/saveData">
@@ -27,5 +28,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

@@ -1,21 +1,30 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
-    repositories {
-        jcenter()
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion androidVersion as Integer
+    buildToolsVersion androidVersionText
+    defaultConfig {
+        applicationId "kr.co.mediex.myhealth.sample"
+        minSdkVersion 16
+        targetSdkVersion androidVersion
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.2'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+    lintOptions {
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 }
 
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+dependencies {
+    compile project(path: ':library')
+    compile "com.android.support:appcompat-v7:$androidVersionText"
+    compile "com.android.support:design:$androidVersionText"
+    compile "com.squareup.retrofit2:retrofit:$retrofit2Version"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit2Version"
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofit2Version"
 }

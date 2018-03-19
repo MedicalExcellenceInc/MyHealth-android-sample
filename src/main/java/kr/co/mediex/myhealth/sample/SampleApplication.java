@@ -6,9 +6,9 @@ import android.app.Application;
 public class SampleApplication extends Application {
 
     // 서비스 이름
-    public static String MY_SERVICE_NAME = "icared3";
+    public static String MY_SERVICE_NAME = "myhealth";
     // 서비스 생성 계정 비밀번호
-    public static String MY_SERVICE_SECRET = "123456";
+    public static String MY_SERVICE_SECRET = "secret";
     // 리소스 이름
     public static String MY_RESOURCE_NAME = "bloodsugar";
 
