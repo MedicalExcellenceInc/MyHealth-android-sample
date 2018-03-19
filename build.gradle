@@ -1,27 +1,30 @@
 apply plugin: 'com.android.application'
 
 android {
-	compileSdkVersion 25
-	buildToolsVersion "24.0.3"
-	defaultConfig {
-		applicationId "kr.co.mediex.myhealth.sample"
-		minSdkVersion 16
-		targetSdkVersion 25
-		versionCode 1
-		versionName "1.0"
-		multiDexEnabled true
-	}
-	lintOptions {
-		abortOnError false
-	}
+    compileSdkVersion androidVersion as Integer
+    buildToolsVersion androidVersionText
+    defaultConfig {
+        applicationId "kr.co.mediex.myhealth.sample"
+        minSdkVersion 16
+        targetSdkVersion androidVersion
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    lintOptions {
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
-	compile project(path: ':library')
-	compile 'com.android.support:appcompat-v7:25.3.1'
-	compile 'com.android.support:design:25.3.1'
-
-}
-repositories {
-	mavenCentral()
+    compile project(path: ':library')
+    compile "com.android.support:appcompat-v7:$androidVersionText"
+    compile "com.android.support:design:$androidVersionText"
+    compile "com.squareup.retrofit2:retrofit:$retrofit2Version"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit2Version"
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofit2Version"
 }
