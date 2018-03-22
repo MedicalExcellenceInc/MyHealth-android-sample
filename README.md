@@ -18,7 +18,7 @@ MyHealth Android Library
 
 필수사항은 안드로이드 *Jelly Bean*(4.1.x/SDK Version 16) 이상 , *자바6*(JDK Version1.6) 이상입니다.
 
-1. [kr.co.mediex.myhealth-1.0.0.arr](https://github.com/MediexcalExcellence/myhealth-sample/raw/master/app/libs/kr.co.mediex.myhealth-1.0.0.arr) 혹은 
+1. [kr.co.mediex.myhealth-1.0.0.arr](https://github.com/MedicalExcellenceInc/myhealth-sample/raw/master/libs/kr.co.mediex.myhealth-1.0.0.aar) 혹은 
 개별로 전달된 파일을 다운받습니다.
 
 2. 라이브러리를 `app/lib`폴더에 넣은 후 `app/build.gradle`를 아래와같이 수정해줍니다.
