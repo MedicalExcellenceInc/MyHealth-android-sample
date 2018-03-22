@@ -35,7 +35,6 @@ public class SampleLoginActivity extends AppCompatActivity {
 				// 라이브러리 Activity에 정보를 전달
 				loginActivityIntent.putExtra(MyHealthActivity.SERVICE_NAME, SampleApplication.MY_SERVICE_NAME);
 				loginActivityIntent.putExtra(MyHealthActivity.SERVICE_SECRET, SampleApplication.MY_SERVICE_SECRET);
-				loginActivityIntent.putExtra(MyHealthActivity.RESOURCE_NAME, SampleApplication.MY_RESOURCE_NAME);
 				startActivityForResult(loginActivityIntent, 1);
 			}
 		});

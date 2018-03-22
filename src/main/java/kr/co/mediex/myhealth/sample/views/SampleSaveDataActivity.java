@@ -8,15 +8,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import kr.co.mediex.myhealth.v1.MyHealth;
-import kr.co.mediex.myhealth.v1.adapter.ContextOAuthTokenAdapter;
-import kr.co.mediex.myhealth.v1.domain.User;
-import kr.co.mediex.myhealth.v1.function.Error;
-import kr.co.mediex.myhealth.v1.function.Success;
 import kr.co.mediex.myhealth.sample.R;
 import kr.co.mediex.myhealth.sample.SampleApplication;
 import kr.co.mediex.myhealth.sample.models.MyBodyInfo;
 import kr.co.mediex.myhealth.sample.models.MyUser;
+import kr.co.mediex.myhealth.v1.MyHealth;
+import kr.co.mediex.myhealth.v1.MyHealthUtils;
+import kr.co.mediex.myhealth.v1.domain.User;
+import kr.co.mediex.myhealth.v1.function.Error;
+import kr.co.mediex.myhealth.v1.function.Success;
 import retrofit2.HttpException;
 
 import java.net.SocketTimeoutException;
@@ -60,11 +60,9 @@ public class SampleSaveDataActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_save);
 
-        this.mMyHealthService = new MyHealth(
+        this.mMyHealthService = MyHealthUtils.createService(getApplicationContext(),
                 SampleApplication.MY_SERVICE_NAME,
-                SampleApplication.MY_SERVICE_SECRET,
-                SampleApplication.MY_RESOURCE_NAME,
-                new ContextOAuthTokenAdapter(getApplicationContext()));
+                SampleApplication.MY_SERVICE_SECRET);
         this.updateView();
         this.updateUserInfo();
     }
@@ -138,26 +136,28 @@ public class SampleSaveDataActivity extends AppCompatActivity implements View.On
             myBodyInfo.setHeight(height);
             myBodyInfo.setMyUser(myUser);
 
-            mMyHealthService.saveRecord(myBodyInfo, new Success<Object>() {
-                // 샘플 정보를 서버에서 저장하기 정공
-                @Override
-                public void onSuccess(Object o) {
-                    showToast("성공적으로 데이터를 전송하였습니다.");
-                }
-            }, new Error() {
-                // 샘플 정보를 서버에서 저장하기 실패
-                @Override
-                public void onError(Throwable throwable) {
-                    if (throwable instanceof SocketTimeoutException) {
-                        showToast("인터넷연결상태를 확인해주세요.");
-                    } else if (throwable instanceof HttpException) {
-                        showToast("서버 에러");
-                    } else {
-                        throwable.printStackTrace();
-                        showToast("에러");
-                    }
-                }
-            });
+            mMyHealthService.insertResource(SampleApplication.MY_RESOURCE_NAME,
+                    myBodyInfo,
+                    new Success<Object>() {
+                        // 샘플 정보를 서버에서 저장하기 정공
+                        @Override
+                        public void onSuccess(Object o) {
+                            showToast("성공적으로 데이터를 전송하였습니다.");
+                        }
+                    }, new Error() {
+                        // 샘플 정보를 서버에서 저장하기 실패
+                        @Override
+                        public void onError(Throwable throwable) {
+                            if (throwable instanceof SocketTimeoutException) {
+                                showToast("인터넷연결상태를 확인해주세요.");
+                            } else if (throwable instanceof HttpException) {
+                                showToast("서버 에러");
+                            } else {
+                                throwable.printStackTrace();
+                                showToast("에러");
+                            }
+                        }
+                    });
         } catch (Throwable e) {
             e.printStackTrace();
         }
