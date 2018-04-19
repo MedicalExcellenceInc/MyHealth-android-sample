@@ -20,11 +20,18 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
-    compile project(path: ':library')
+    // compile project(path: ':library')
+    compile(name: "kr.co.mediex.myhealth-1.0.1", ext: "aar")
     compile "com.android.support:appcompat-v7:$androidVersionText"
     compile "com.android.support:design:$androidVersionText"
-    compile "com.squareup.retrofit2:retrofit:$retrofit2Version"
-    compile "com.squareup.retrofit2:converter-gson:$retrofit2Version"
-    compile "com.squareup.retrofit2:adapter-rxjava:$retrofit2Version"
+//    compile "com.squareup.retrofit2:retrofit:$retrofit2Version"
+//    compile "com.squareup.retrofit2:converter-gson:$retrofit2Version"
+//    compile "com.squareup.retrofit2:adapter-rxjava:$retrofit2Version"
 }

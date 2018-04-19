@@ -148,6 +148,7 @@ public class SampleSaveDataActivity extends AppCompatActivity implements View.On
                         // 샘플 정보를 서버에서 저장하기 실패
                         @Override
                         public void onError(Throwable throwable) {
+                            throwable.printStackTrace();
                             if (throwable instanceof SocketTimeoutException) {
                                 showToast("인터넷연결상태를 확인해주세요.");
                             } else if (throwable instanceof HttpException) {
