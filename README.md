@@ -97,7 +97,7 @@ this.mMyHealthService.getCurrentUser(new Success<User>() {
                 throwable.printStackTrace();
             }
         });
-``` 
+```
 
 위 MyHealthUtils로 생성된 서비스는 회원로그인으로 생성된 토큰이 유효해야 사용가능합니다. 대부분의 서버와 통신하는 함수는 *interface*를 이용한 콜백과 `RxJava`에 **subscribe**을 사용할 수 있습니다.
 
