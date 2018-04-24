@@ -19,8 +19,8 @@ buildscript {
 apply plugin: "com.android.application"
 
 android {
-    compileSdkVersion androidVersion
-    buildToolsVersion androidVersionText
+    compileSdkVersion 27
+    buildToolsVersion '27.0.2'
     defaultConfig {
         applicationId "kr.co.mediex.myhealth.sample"
         minSdkVersion 16
@@ -48,7 +48,7 @@ repositories {
 
 dependencies {
     // compile project(path: ":library")
-    compile(name: "kr.co.mediex.myhealth-1.0.1", ext: "aar")
+    compile(name: "kr.co.mediex.myhealth-1.0.2", ext: "aar")
     compile "com.android.support:appcompat-v7:$androidVersionText"
     compile "com.android.support:design:$androidVersionText"
 }
