@@ -1,4 +1,4 @@
-MyHealth Android Library
+MyHealth Android Library (For Private API)
 ---
 
 ### 목차
@@ -11,14 +11,15 @@ MyHealth Android Library
 
 # 안내
 
-안드로이드 환경에서 사용자의 측정데이터를 `MyHealth`에 저장하고 공개된 정보를 가져올 수 있는 라이브러리입니다. 
-라이브러리를 사용하기 위해선 **서비스이름**과 **키**를 사용하며 협의된 업체에게 발급해드리고 있습니다.
+`MyHealth Private API`를 사용하는 Client가 측정데이터를 보다 쉽게 저장, 수정, 삭제, 조회할 수 있도록 도와주는 라이브러리입니다.
+해당 라이브러리를 사용하기 위해서는 먼저 [MyHealth Developer Site](http://developer.my-health.co.kr)에 접속하신 후 해당 페이지에 명시된 가이드라인을 참고하셔서 가입하십시오.
+가입과 동시에 제공되는 **서비스 이름**, **서비스 비밀번호**, **리소스 이름**를 이용하면 라이브러리 사용이 가능합니다.
 
 # 설정
 
 필수사항은 안드로이드 *Jelly Bean*(4.1.x/SDK Version 16) 이상 , *자바6*(JDK Version1.6) 이상입니다.
 
-1. [kr.co.mediex.myhealth-1.0.0.arr](https://github.com/MedicalExcellenceInc/myhealth-sample/raw/master/libs/kr.co.mediex.myhealth-1.0.0.aar) 혹은 
+1. [kr.co.mediex.myhealth-1.0.2.arr](https://github.com/MedicalExcellenceInc/myhealth-sample/raw/master/libs/kr.co.mediex.myhealth-1.0.2.aar) 혹은 
 개별로 전달된 파일을 다운받습니다.
 
 2. 라이브러리를 `app/lib`폴더에 넣은 후 `app/build.gradle`를 아래와같이 수정해줍니다.
@@ -103,9 +104,9 @@ this.mMyHealthService.getCurrentUser(new Success<User>() {
 
 # 리소스
 
-서비스를 등록시 리소스도 함께 등록됩니다. 측정데이터를 저장하는 `Private resource`와 다른 서비스에서 측정되고 통일된 형식으로 반환하는 `Public resource`가 있습니다.
+서비스를 등록시 리소스도 함께 등록됩니다.
 
-1. Private resource 저장
+1. Resource 저장
 
 ```java
 mMyHealthService.insertResource(MY_RESOURCE_NAME, myBodyInfo,
@@ -114,43 +115,56 @@ mMyHealthService.insertResource(MY_RESOURCE_NAME, myBodyInfo,
             public void onSuccess(Object o) {
                 // 성공
             }
-        }, new Error() {
-            @Override
-            public void onError(Throwable throwable) {
-                // 오류
-                if (throwable instanceof SocketTimeoutException) {
-                    throwable.printStackTrace();
-                } else if (throwable instanceof HttpException) {
-                    throwable.printStackTrace();
-                } else {
-                    throwable.printStackTrace();
-                }
-            }
-        });
+        }, errorHandler);
 ```
 
-2. Public resource 불러오기
+2. Resources 가져오기
 
 ```java
-mMyHealthService.findResources(PUBLIC_RESOURCE_NAME,
+mMyHealthService.findResources(SampleApplication.MY_RESOURCE_NAME, "1",
+        new Success<List<Map<String, Object>>>() {
+            @Override
+            public void onSuccess(List<Map<String, Object>> maps) {
+                // 성공
+            }
+        }, errorHandler);
+```
+
+3. Resource 가져오기
+
+```java
+mMyHealthService.findResource(SampleApplication.MY_RESOURCE_NAME, "4",
+        new Success<Map<String, Object>>() {
+            @Override
+            public void onSuccess(Map<String, Object> stringObjectMap) {
+                alert(stringObjectMap.toString());
+            }
+        }, errorHandler);
+```        
+
+4. Resource 수정하기
+
+```java
+mMyHealthService.updateResource(SampleApplication.MY_RESOURCE_NAME, "3",
+        myBodyInfo,
         new Success<Object>() {
             @Override
             public void onSuccess(Object o) {
                 // 성공
             }
-        }, new Error() {
+        }, errorHandler);
+```
+
+5. Resource 삭제하기
+
+```java
+mMyHealthService.deleteResource(SampleApplication.MY_RESOURCE_NAME, "2", 
+        new Success<Object>() {
             @Override
-            public void onError(Throwable throwable) {
-                // 오류
-                if (throwable instanceof SocketTimeoutException) {
-                    throwable.printStackTrace();
-                } else if (throwable instanceof HttpException) {
-                    throwable.printStackTrace();
-                } else {
-                    throwable.printStackTrace();
-                }
+            public void onSuccess(Object o) {
+                // 성공
             }
-        });
+        }, errorHandler);
 ```
 
 # 업데이트 내역
