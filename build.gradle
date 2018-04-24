@@ -1,6 +1,6 @@
 buildscript {
 
-    ext.androidVersion = project.hasProperty("androidVersion") ? androidVersion : 27
+    ext.androidVersion = project.hasProperty("androidVersion") ? androidVersion as int : 27
     ext.androidVersionText = project.hasProperty("androidVersionText") ? androidVersionText : "27.0.2"
 
     repositories {
