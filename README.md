@@ -12,7 +12,7 @@ MyHealth Android Library (For Private API)
 # 안내
 
 `MyHealth Private API`를 사용하는 Client가 측정데이터를 보다 쉽게 저장, 수정, 삭제, 조회할 수 있도록 도와주는 라이브러리입니다.
-해당 라이브러리를 사용하기 위해서는 먼저 [MyHealth Developer Site](http://developer.my-health.co.kr)에 접속하신 후 해당 페이지에 명시된 가이드라인을 참고하셔서 가입하십시오.
+해당 라이브러리를 사용하기 위해서는 먼저 [MyHealth Developer Site (http://developer.my-health.co.kr)](http://developer.my-health.co.kr)에 접속하신 후 해당 페이지에 명시된 가이드라인을 참고하셔서 가입하십시오.
 가입과 동시에 제공되는 **서비스 이름**, **서비스 비밀번호**, **리소스 이름**를 이용하면 라이브러리 사용이 가능합니다.
 
 # 설정
