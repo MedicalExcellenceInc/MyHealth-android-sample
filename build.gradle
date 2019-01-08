@@ -47,8 +47,8 @@ repositories {
 }
 
 dependencies {
-    // compile project(path: ":library")
-    compile(name: "kr.co.mediex.myhealth-1.0.1", ext: "aar")
+//    compile project(path: ":library")
+    compile(name: "kr.co.mediex.myhealth-1.0.3", ext: "aar")
     compile "com.android.support:appcompat-v7:$androidVersionText"
     compile "com.android.support:design:$androidVersionText"
 }

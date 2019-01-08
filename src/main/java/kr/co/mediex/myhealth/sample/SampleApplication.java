@@ -6,10 +6,10 @@ import android.app.Application;
 public class SampleApplication extends Application {
 
     // 서비스 이름
-    public static String MY_SERVICE_NAME = "";
+    public static String MY_SERVICE_NAME = "out-body";
     // 서비스 생성 계정 비밀번호
-    public static String MY_SERVICE_SECRET = "";
+    public static String MY_SERVICE_SECRET = "n69CjEcZpebf64F";
     // 리소스 이름
-    public static String MY_RESOURCE_NAME = "";
+    public static String MY_RESOURCE_NAME = "body";
 
 }

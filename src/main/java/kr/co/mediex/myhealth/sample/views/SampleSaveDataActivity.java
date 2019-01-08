@@ -17,9 +17,9 @@ import kr.co.mediex.myhealth.v1.MyHealthUtils;
 import kr.co.mediex.myhealth.v1.domain.User;
 import kr.co.mediex.myhealth.v1.function.Error;
 import kr.co.mediex.myhealth.v1.function.Success;
-import retrofit2.HttpException;
 
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
 
 // 로그인 후 유저정보를 확인하거나 샘플 데이터를 보내볼 수 있음.
 public class SampleSaveDataActivity extends AppCompatActivity implements View.OnClickListener {
@@ -103,7 +103,7 @@ public class SampleSaveDataActivity extends AppCompatActivity implements View.On
                 showToast("에러가 발생하였습니다.");
                 throwable.printStackTrace();
             }
-        });
+        }, null);
     }
 
     private void showToast(final String message) {
@@ -129,15 +129,19 @@ public class SampleSaveDataActivity extends AppCompatActivity implements View.On
             myUser.setId((long) (Math.random() * 1000));
             myUser.setName("myUserName");
 
-            MyBodyInfo myBodyInfo = new MyBodyInfo();
-            // 샘플 신체정보 아이디 지정
-            myBodyInfo.setId((long) (Math.random() * 1000));
-            myBodyInfo.setWeight(weight);
-            myBodyInfo.setHeight(height);
-            myBodyInfo.setMyUser(myUser);
-
+            ArrayList<MyBodyInfo> list = new ArrayList<>();
+            for (int i = 0 ; i < 10 ; i++) {
+                MyBodyInfo myBodyInfo = new MyBodyInfo();
+                // 샘플 신체정보 아이디 지정
+                myBodyInfo.setId((long) (Math.random() * 1000));
+                myBodyInfo.setWeight(weight);
+                myBodyInfo.setHeight(height);
+                myBodyInfo.setMyUser(myUser);
+                myBodyInfo.setHeight(height + i);
+                list.add(myBodyInfo);
+            }
             mMyHealthService.insertResource(SampleApplication.MY_RESOURCE_NAME,
-                    myBodyInfo,
+                    list,
                     new Success<Object>() {
                         // 샘플 정보를 서버에서 저장하기 정공
                         @Override
@@ -151,14 +155,12 @@ public class SampleSaveDataActivity extends AppCompatActivity implements View.On
                             throwable.printStackTrace();
                             if (throwable instanceof SocketTimeoutException) {
                                 showToast("인터넷연결상태를 확인해주세요.");
-                            } else if (throwable instanceof HttpException) {
-                                showToast("서버 에러");
                             } else {
                                 throwable.printStackTrace();
                                 showToast("에러");
                             }
                         }
-                    });
+                    }, null);
         } catch (Throwable e) {
             e.printStackTrace();
         }
