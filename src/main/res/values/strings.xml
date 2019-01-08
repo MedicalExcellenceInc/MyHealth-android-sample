@@ -9,8 +9,8 @@
     <string name="passwordConfirm">비밀번호 확인</string>
     <string name="regist">가입</string>
     <string name="login">로그인</string>
-    <string name="weight">뭄무게</string>
-    <string name="height">신장</string>
+    <string name="weight">몸무게</string>
+    <string name="height">키</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="userInfo">회원정보</string>
     <string name="logout">로그아웃</string>
