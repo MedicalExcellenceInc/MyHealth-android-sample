@@ -1,7 +1,7 @@
 buildscript {
 
-    ext.androidVersion = project.hasProperty("androidVersion") ? androidVersion as int : 27
-    ext.androidVersionText = project.hasProperty("androidVersionText") ? androidVersionText : "27.0.2"
+    ext.androidVersion = project.hasProperty("androidVersion") ? androidVersion as int : 28
+    ext.androidVersionText = project.hasProperty("androidVersionText") ? androidVersionText : "28.0.0"
 
     repositories {
         mavenCentral()
@@ -12,21 +12,19 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:2.3.3"
+        classpath 'com.android.tools.build:gradle:3.2.1'
     }
 }
 
 apply plugin: "com.android.application"
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.2'
+    compileSdkVersion androidVersion
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "kr.co.mediex.myhealth.sample"
         minSdkVersion 16
         targetSdkVersion androidVersion
-        versionCode 1
-        versionName "1.0"
         multiDexEnabled true
     }
     lintOptions {
@@ -48,7 +46,7 @@ repositories {
 
 dependencies {
 //    compile project(path: ":library")
-    compile(name: "kr.co.mediex.myhealth-1.0.3", ext: "aar")
-    compile "com.android.support:appcompat-v7:$androidVersionText"
-    compile "com.android.support:design:$androidVersionText"
+    implementation(name: "kr.co.mediex.myhealth-1.0.4", ext: "aar")
+    implementation "com.android.support:appcompat-v7:$androidVersionText"
+    implementation "com.android.support:design:$androidVersionText"
 }
